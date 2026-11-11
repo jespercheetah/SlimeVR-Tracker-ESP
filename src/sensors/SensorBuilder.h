@@ -31,6 +31,7 @@
 #include "ErroneousSensor.h"
 #include "PinInterface.h"
 #include "SensorManager.h"
+#include "TouchFlexSensor.h"
 #include "bno055sensor.h"
 #include "bno080sensor.h"
 #include "consts.h"
@@ -357,6 +358,24 @@ public:
 
 		sensor->motionSetup();
 		return sensor;
+	}
+
+	template <typename ScalarSensorType, typename... Args>
+	bool scalarSensorDescEntry(uint8_t sensorID, Args&&... args) {
+		m_Manager->m_Logger.trace("Building Scalar Sensor with: id=%d", sensorID);
+
+		std::unique_ptr<::Sensor> sensor
+			= std::make_unique<ScalarSensorType>(sensorID, std::forward<Args>(args)...);
+		sensor->motionSetup();
+		bool working = sensor->isWorking();
+		m_Manager->m_Sensors.push_back(std::move(sensor));
+
+		if (!working) {
+			return false;
+		}
+
+		m_Manager->m_Logger.info("Sensor %d configured", sensorID);
+		return true;
 	}
 
 private:

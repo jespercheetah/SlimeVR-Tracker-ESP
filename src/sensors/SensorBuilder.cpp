@@ -32,6 +32,11 @@ SensorBuilder::SensorBuilder(SensorManager* sensorManager)
 	activeSensorCount += sensorDescEntry<ImuType>(sensorID, __VA_ARGS__) ? 1 : 0; \
 	sensorID++;
 
+#define SCALAR_SENSOR_DESC_ENTRY(ScalarSensorType, ...)                            \
+	activeSensorCount                                                              \
+		+= scalarSensorDescEntry<ScalarSensorType>(sensorID, __VA_ARGS__) ? 1 : 0; \
+	sensorID++;
+
 #define SENSOR_INFO_ENTRY(ImuID, SensorPosition) \
 	m_Manager->m_Sensors[ImuID]->setSensorInfo(SensorPosition);
 

@@ -101,6 +101,7 @@ enum class SensorTypeID : uint8_t {
 #define BOARD_SLIMEVR_BUTTERFLY 26
 #define BOARD_ESP32C6_SUPERMINI 27
 #define BOARD_TTGO_TOI_PLUS 28
+#define BOARD_GLOVE_TOUCH_DEV 29  // Touch-based glove (dev)
 #define BOARD_DEV_RESERVED 250  // Reserved, should not be used in any release firmware
 
 #define BOARD_N0 "BOARD_UNKNOWN"
@@ -132,6 +133,7 @@ enum class SensorTypeID : uint8_t {
 #define BOARD_N26 "BOARD_SLIMEVR_BUTTERFLY"
 #define BOARD_N27 "BOARD_ESP32C6_SUPERMINI"
 #define BOARD_N28 "BOARD_TTGO_TOI_PLUS"
+#define BOARD_N29 "BOARD_GLOVE_TOUCH_DEV"  // Touch-based glove (dev)
 #define BOARD_N250 \
 	"BOARD_DEV_RESERVED"  // Reserved, should not be used in any release firmware
 

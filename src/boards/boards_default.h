@@ -29,7 +29,7 @@
 
 // Default IMU pinouts and definitions for default tracker types
 
-#if BOARD != BOARD_GLOVE_IMU_SLIMEVR_DEV
+#if BOARD != BOARD_GLOVE_IMU_SLIMEVR_DEV && BOARD != BOARD_GLOVE_TOUCH_DEV
 // Defaunlt definitions for normal 2-sensor trackers
 #ifndef MAX_SENSORS_COUNT
 #define MAX_SENSORS_COUNT 2
@@ -91,6 +91,12 @@ PIN_IMU_SDA, PRIMARY_IMU_OPTIONAL, BMI160_QMC_REMAP) \
 	)
 #endif
 #endif
+#elif BOARD == BOARD_GLOVE_TOUCH_DEV
+SDA(21)
+SCL(22)
+LED(2)
+INVERTED_LED(false)
+#include "glove_touch_default.h"
 #else  // BOARD == BOARD_GLOVE_IMU_SLIMEVR_DEV
 
 SDA(1)
@@ -107,4 +113,4 @@ BATTERY_R2(40.2)
 
 #include "glove_default.h"
 
-#endif  // BOARD != BOARD_GLOVE_IMU_SLIMEVR_DEV
+#endif  // BOARD != BOARD_GLOVE_IMU_SLIMEVR_DEV && BOARD != BOARD_GLOVE_TOUCH_DEV
